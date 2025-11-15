@@ -1,0 +1,3 @@
+google-cloud-bigquery
+pandas
+db-dtypes # Nécessaire pour que BigQuery et Pandas parlent bien ensemble
