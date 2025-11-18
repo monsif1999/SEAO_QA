@@ -16,9 +16,17 @@ class Search_Input(BaseModel):
 
 
 class RAGPipeline:
-    def __init__(self, llm_model , vector_store : QdrantVectorStore):
+    def __init__(self,vector_store : QdrantVectorStore):
         self.llm_model = init_chat_model("gpt-4.1")
         self.vector_store = vector_store
+        self.tools = self._get_tools()
+        self.agent = create_agent(self.llm_model, self.tools, system_prompt=(
+                "Tu es un expert des appels d'offres du Québec (SEAO). "
+                "Ta mission est d'aider l'utilisateur en trouvant des contrats pertinents. "
+                "Utilise TOUJOURS l'outil de recherche pour trouver des informations factuelles avant de répondre. "
+                "Cite le nom de l'acheteur et le titre du contrat dans ta réponse."
+                "Retourne toujours le lien vers l'appel ou les appels d'offres"
+            ))
 
 
 
@@ -40,7 +48,7 @@ class RAGPipeline:
             print(f"cant retrieve documents {e} ")
             raise
     
-    def get_tools(self):
+    def _get_tools(self):
         def _search_wrapper(query : str):
             return self.search(query)
         
@@ -54,8 +62,17 @@ class RAGPipeline:
 
         return [search_tool]
         
-    def generate_answer(self):
-        tools = self.get_tools()
-        prompt = ("Not implemented")
-        agent = create_agent(self.llm_model, tools, system_prompt=prompt)
-        return agent
+    def generate_answer(self, user_query : str):
+        result = self.agent.invoke({"messages": [{"role": "user", "content": user_query}]})
+        last_message = result["messages"][-1]
+        response_text = last_message.content
+        
+        # Extraction des sources (Artifacts) depuis l'historique des messages
+        sources = []
+        for msg in result["messages"]:
+            if hasattr(msg, "artifact") and msg.artifact:
+                sources.extend(msg.artifact)
+        return {
+            "output": response_text,
+            "sources": sources
+        }
