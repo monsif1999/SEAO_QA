@@ -52,10 +52,10 @@ def process_batch(batch_df: pd.DataFrame) -> Tuple[List[str], List[Dict[str, Any
     
     documents_texte = []
     metadonnees_payloads = []
+    ids_list = []
     
     for index, row in batch_df.iterrows():
         
-        # --- 1. Génération du Document Texte (Mis à jour) ---
         texte_parts = []
         
         if pd.notna(row['tender_title']):
@@ -69,12 +69,10 @@ def process_batch(batch_df: pd.DataFrame) -> Tuple[List[str], List[Dict[str, Any
         if pd.notna(row['status']):
             texte_parts.append(f"Statut : {row['status']}.")
         
-        # --- AJOUTS DEMANDÉS ---
         if pd.notna(row['start_date']):
             texte_parts.append(f"Date de début : {row['start_date']}")
         if pd.notna(row['end_date']):
             texte_parts.append(f"Date de fin : {row['end_date']}")
-        # --- FIN DES AJOUTS ---
 
         if pd.notna(row['procurement_method_details']):
             texte_parts.append(f"Méthode d'approvisionnement : {row['procurement_method_details']}.")
@@ -93,14 +91,11 @@ def process_batch(batch_df: pd.DataFrame) -> Tuple[List[str], List[Dict[str, Any
         if pd.notna(row['last_contract_status']):
             texte_parts.append(f"Statut du contrat : {row['last_contract_status']}.")
             
-        # --- AJOUT DEMANDÉ ---
         if pd.notna(row['seao_url']):
             texte_parts.append(f"Lien SEAO : {row['seao_url']}")
-        # --- FIN DE L'AJOUT ---
 
         texte = "\n".join(texte_parts)
         
-        # --- 2. Dictionnaire de Métadonnées (Payload) (Inchangé) ---
         
         metadata = {
            "ocid": row['ocid'],
@@ -121,30 +116,7 @@ def process_batch(batch_df: pd.DataFrame) -> Tuple[List[str], List[Dict[str, Any
         
         documents_texte.append(texte)
         metadonnees_payloads.append(metadata)
+        ids_list.append(str(row['ocid']))
 
-    return documents_texte, metadonnees_payloads
-print("Démarrage du pipeline d'indexation...")
+    return documents_texte, ids_list , metadonnees_payloads
     
-data_stream = stream_table(batch_size=3) # Petits lots pour tester
-    
-try:
-    # On prend le premier lot
-    first_batch_df = next(data_stream)
-        
-    print(f"\n--- Lot 1 récupéré ({len(first_batch_df)} lignes) ---")
-        
-    # On traite le premier lot
-    docs, metas = process_batch(first_batch_df)
-        
-    print("\n--- Document Texte Généré (1er doc) ---")
-    print(docs[0])
-        
-    print("\n--- Métadonnées Générées (1er doc) ---")
-    print(metas[0])
-        
-    print(f"\nChallenge 2 réussi ! {len(docs)} documents traités.")
-
-except StopIteration:
-    print("Stream terminé.")
-except Exception as e:
-        print(f"Une erreur est survenue dans le pipeline : {e}")
