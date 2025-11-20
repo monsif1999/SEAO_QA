@@ -5,7 +5,7 @@ from langchain.tools import tool
 from langchain_core.tools import StructuredTool
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
-from vector_db import get_qdrant_client, get_vector_store
+from src.vector_db import get_qdrant_client, get_vector_store
 from pydantic import BaseModel, Field
 
 QDRANT_COLLECTION_NAME = "seao_tenders"
@@ -35,7 +35,7 @@ class RAGPipeline:
             scored_results = self.vector_store.similarity_search_with_score(query, k)
             serialized = "\n\n".join(
         (f"Source: {doc.metadata}\nContent: {doc.page_content}")
-        for doc in scored_results
+        for doc, _ in scored_results
     )
             documents_found = []
             for doc , score in scored_results:

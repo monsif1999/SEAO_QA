@@ -1,0 +1,19 @@
+[project]
+name = "seao-qa"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "db-dtypes>=1.4.4",
+    "google-cloud-bigquery>=3.38.0",
+    "langchain>=0.3.27",
+    "langchain-openai>=0.3.35",
+    "langchain-qdrant>=0.2.1",
+    "openai>=2.8.1",
+    "pandas>=2.3.3",
+    "pydantic>=2.12.4",
+    "python-dotenv>=1.2.1",
+    "qdrant-client>=1.16.0",
+    "streamlit>=1.50.0",
+]
