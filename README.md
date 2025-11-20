@@ -14,17 +14,17 @@ Démocratiser l'accès aux données contractuelles publiques. Au lieu d'écrire 
 
 L'assistant répond avec précision, synthèse, et **liens vers les sources officielles**.
 
-## ⚙️ Architecture Technique
+## ⚙️ Architecture technique
 
 Le projet est divisé en deux pipelines majeurs :
 
-### 1. Pipeline ETL & Indexation (`/etl`)
+### 1. Pipeline ETL & indexation (`/etl`)
 * **Extraction :** Connexion au Data Warehouse (BigQuery) contenant les données brutes SEAO.
 * **Transformation :** Nettoyage, déduplication des appels d'offres (gestion des versions via `ocid`), et templating de texte enrichi.
 * **Chargement (Load) :** Génération d'embeddings (via `text-embedding-3-large`) et indexation massive dans **Qdrant**.
 * **Volume :** ~300 000 vecteurs de 3072 dimensions.
 
-### 2. Pipeline RAG & Application (`/src` & `app.py`)
+### 2. Pipeline RAG & zpplication (`/src` & `app.py`)
 * **Cerveau (Agent) :** Utilisation de **LangChain** et des **Agents** (`create_tool_calling_agent`) pour orchestrer la recherche.
 * **Retrieval :** Recherche hybride sémantique + métadonnées dans Qdrant.
 * **Generation :** Synthèse par **GPT-4o**.
