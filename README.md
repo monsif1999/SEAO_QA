@@ -12,12 +12,13 @@ Un système intelligent de **Retrieval-Augmented Generation (RAG)** permettant d
 ![Qdrant](https://img.shields.io/badge/Qdrant-Vector_DB-red.svg)
 ## 📸 Aperçu
 
-![Interface de l'Assistant](assets/example.png)
-
-
 [![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/raw/main/open-in-hf-spaces-sm-dark.svg)](https://huggingface.co/spaces/Mons999/seao_QA)
 
 > **Testez la démo live ici 👆**
+![Interface de l'Assistant](assets/example.png)
+
+
+
 
 ## 🎯 Objectif
 
