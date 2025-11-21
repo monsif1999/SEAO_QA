@@ -1,3 +1,16 @@
+---
+title: Assistant SEAO
+emoji: 🏗️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+---
+
+# SEAO RAG Assistant
+... (le reste de ton texte)
+
+
 # 🏗️ SEAO RAG Assistant
 
 Un système intelligent de **Retrieval-Augmented Generation (RAG)** permettant d'interroger en langage naturel une base de données de plus de **300 000 appels d'offres publics** du Québec (SEAO).
