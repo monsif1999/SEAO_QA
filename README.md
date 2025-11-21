@@ -1,24 +1,29 @@
----
-title: Assistant SEAO
-emoji: 🏗️
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-app_port: 7860
----
 
-# SEAO RAG Assistant
-... (le reste de ton texte)
+
 
 
 # 🏗️ SEAO RAG Assistant
 
 Un système intelligent de **Retrieval-Augmented Generation (RAG)** permettant d'interroger en langage naturel une base de données de plus de **300 000 appels d'offres publics** du Québec (SEAO).
+*L'assistant répondant à une question complexe avec citation des sources.*
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B.svg)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C.svg)
 ![Qdrant](https://img.shields.io/badge/Qdrant-Vector_DB-red.svg)
+## 📸 Aperçu
+
+![Interface de l'Assistant](assets/example.png)
+
+---
+title: SEAO RAG Assistant
+...
+---
+
+# 🏗️ SEAO RAG Assistant
+
+[![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/raw/main/open-in-hf-spaces-sm-dark.svg)](https://huggingface.co/spaces/Mons999/seao_QA)
+
+> **Testez la démo live ici 👆**
 
 ## 🎯 Objectif
 
