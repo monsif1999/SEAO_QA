@@ -1,4 +1,6 @@
 .env
 chroma_langchain_db/
 data/
-qdrant_data/collection
+qdrant_data/
+.chainlit
+__pycache__
