@@ -25,11 +25,18 @@ def connect_to_bigquery() -> bigquery.Client:
 
 def stream_table(batch_size : int = 100):
     client = connect_to_bigquery()
+    
     table_path = f"{project_id}.{dataset_id}.{table_id}"
+    query = f"""
+        SELECT * FROM `{table_path}` 
+WHERE start_date >= '2024-01-01' AND start_date <= '2024-12-31'
+        ORDER BY start_date DESC
+    """
     if not table_id:
         raise ValueError("table_path not found in .env")
     try : 
-        rows_iter = client.list_rows(table_path)
+        query_job = client.query(query)
+        rows_iter = query_job.result(page_size=batch_size)
         batch_rows = []
         for row in rows_iter:
             batch_rows.append(dict(row))

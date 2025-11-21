@@ -5,10 +5,15 @@ from typing import List, Dict
 from langchain_core.embeddings.embeddings import Embeddings
 from src.embedding import get_embedding_model, batch_embedding
 import uuid
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 def get_qdrant_client() -> QdrantClient:
+    url = os.getenv("QDRANT_ENDPOINT")
+    api_key = os.getenv("QDRANT_API")
     try : 
-        client = QdrantClient(path="./qdrant_data")
+        client = QdrantClient(url=url, api_key=api_key)
         return client
     except Exception as e : 
         print(f"A problem has occurred {e}")

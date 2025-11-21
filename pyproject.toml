@@ -1,7 +1,7 @@
 [project]
 name = "seao-qa"
 version = "0.1.0"
-description = "Add your description here"
+description = "Un assistant RAG pour explorer les appels d'offres du Québec (SEAO)."
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
