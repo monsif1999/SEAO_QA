@@ -38,6 +38,7 @@ async def start():
         msg.content = """👋 **Bonjour ! Je suis l'assistant expert SEAO.**
         
 Posez-moi une question sur les appels d'offres du Québec.
+À noter que seules les données de 2024 sont actuellement disponibles. »
 *Exemple : "Quels sont les contrats de déneigement à Montréal ?"*
 """
         await msg.update()
