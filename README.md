@@ -14,12 +14,6 @@ Un système intelligent de **Retrieval-Augmented Generation (RAG)** permettant d
 
 ![Interface de l'Assistant](assets/example.png)
 
----
-title: SEAO RAG Assistant
-...
----
-
-# 🏗️ SEAO RAG Assistant
 
 [![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/raw/main/open-in-hf-spaces-sm-dark.svg)](https://huggingface.co/spaces/Mons999/seao_QA)
 
