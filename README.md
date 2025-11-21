@@ -48,5 +48,5 @@ Ce projet utilise **uv** pour la gestion des dépendances.
 
 ### 1. Cloner le dépôt
 ```bash
-git clone [https://github.com/TON_USERNAME/seao-rag-assistant.git](https://github.com/TON_USERNAME/seao-rag-assistant.git)
-cd seao-rag-assistant
+git clone [https://github.com/monsif1999/SEAO_QA.git](https://github.com/monsif1999/SEAO_QA.git)
+cd SEAO_QA
