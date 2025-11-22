@@ -57,7 +57,7 @@ class RAGPipeline:
 
 
 
-    def search(self, query : str, k : int = 10):
+    def search(self, query : str, k : int = 50):
         try : 
             scored_results = self.vector_store.similarity_search_with_score(query, k)
             serialized = "\n\n".join(
